@@ -22,11 +22,12 @@ $(document).ready(function() {
   $("form#alarm").submit(function() {
     event.preventDefault();
     var setTime = $("input#setTime").val();
-    time = moment(setTime, "hh:mm a");
+    var time = moment(setTime, "hh:mm a");
     var newAlarm = new Alarm(time);
     var alertAlarm = setInterval(function() {
       if(newAlarm.alarmTrigger()) {
-        alert("Wake Up!!!");
+        $('div#wakeUp').show();
+        $('form#alarm').hide();
         clearInterval(alertAlarm);
       }
     }, 1000);
